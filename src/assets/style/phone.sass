@@ -1,0 +1,93 @@
+@import './global-style'
+@import './screen.sass'
+
+.phone-wrapper *
+    transition: all 0.5s
+
+.phone-wrapper
+    position: relative
+    margin-top: -8%
+
+.phone, .__phone-shadow
+    width: $calcW
+    height: $calcH
+
+.__phone-shadow
+    position: absolute
+    bottom: -3%
+    @include center-flex
+
+    &> div
+        width: 60%
+        height: 10%
+
+        position: absolute
+        bottom: -10%
+
+        filter: blur(7.5px)
+        background: rgba(0,0,0,0.5)
+        border-radius: 50%
+        opacity: 0.7
+
+        transition: transform 5s, opacity 5s, filter 1s, bottom 1s border-radius 1s
+
+    &.__default-state
+
+        &> div
+            width: 100%
+            height: 100%
+            bottom: 0
+
+            filter: blur(5px)
+            border-radius: #{$borRadRes}em
+            transform: scale(0.95)
+            opacity: 1
+
+.phone
+    position: relative
+    perspective: $pers
+
+    .__frame
+        width: inherit
+        height: inherit
+        border-radius: #{$borRadRes}em
+        background-color: $dbg
+
+        position: relative
+
+        .__layer-1
+            width: calc(100% - #{$hDpad})
+            height: calc(100% - #{$hDpad})
+            position: absolute
+            top: calc(#{$hDpad} / 2)
+            left: calc(#{$hDpad} / 2)
+            border-radius: #{$borRad}em
+
+            background-color: #070707
+
+            .__screen
+                width: calc(100% - (#{$hDpad} /2))
+                height: calc(100% - (#{$hDpad} /2))
+                position: absolute
+                top: calc(#{$hDpad} / 4)
+                left: calc(#{$hDpad} / 4)
+                border-radius: #{$borRad}em
+
+                background-color: $dbg
+                border: calc(#{$hDpad} / 4) solid #050505
+                box-shadow: 0.1em -0.1em 0.1em 0.1em $dbg2
+                overflow: hidden
+
+                @include center-top-flex
+
+                .__earpiece
+                    width: 2.5em
+                    height: $hDpad
+                    background-color: $dbg3
+                    border-radius: calc(#{$dpad} + #{$hDpad})
+                    margin-top: calc(-#{$hDpad} / 2)
+                    border: 1px solid #1c1c1c
+                    box-shadow: inset 0 0 0.1em $dbg, inset 0.2em 0 0.2em $dbg, inset -0.2em 0 0.2em $dbg
+
+.__default-state
+    transform: translateZ(-5em) rotate3d(-31, -18, 22, -60deg) scale(0.7)

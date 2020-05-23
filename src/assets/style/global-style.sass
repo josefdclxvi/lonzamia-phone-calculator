@@ -1,0 +1,123 @@
+// this file contains variables, mixins, and other global style
+@import './variables.sass'
+    
+$mobileWS: "(max-width: 320px)"
+$mobileWM: "(max-width: 359px)"
+$mobileWL: "(max-width: 480px)"
+$phablet: "(min-width: 481px) and (max-width: 768px)"
+$tablet: "(min-width: 769px) and (max-width: 1024px)"
+$desktop: "(min-width: 1025px)"
+$desktopHD: "(min-width: 1440px)"
+
+$mobileHS: "(max-height: 320px)"
+$mobileHM: "(max-height: 480px)"
+$mobileHL: "(max-height: 640px)"
+$mobileHXL: "(max-height: 763px)"
+$iphoneX: "(max-height: 823px)"
+$tabletH: "(min-height: 824px)"
+
+$landscape: "(orientation: landscape)"
+$portrait: "(orientation: portrait)"
+
+@mixin backgroundImage($imgpath, $position, $bgSize)
+    background: transparent url(#{$imgpath}) no-repeat #{$position}
+    background-size: #{$bgSize}
+
+@mixin position-centered
+    margin: auto
+    left: 0
+    right: 0
+
+@mixin center-flex
+    display: flex
+    justify-content: center
+    align-items: center
+    
+@mixin center-top-flex
+    display: flex
+    justify-content: center
+    align-items: flex-start
+    
+@mixin center-bot-flex
+    display: flex
+    justify-content: center
+    align-items: flex-end
+    
+@mixin left-bot-flex
+    display: flex
+    justify-content: flex-start
+    align-items: flex-end
+    
+@mixin right-bot-flex
+    display: flex
+    justify-content: flex-end
+    align-items: flex-end
+    
+@mixin left-top-flex
+    display: flex
+    justify-content: flex-start
+    align-items: flex-start
+    
+@mixin right-top-flex
+    display: flex
+    justify-content: flex-end
+    align-items: flex-start
+
+@mixin sb-top-flex
+    display: flex
+    justify-content: space-between
+    align-items: flex-start
+
+@mixin sb-bottom-flex
+    display: flex
+    justify-content: space-between
+    align-items: flex-end
+
+@mixin left-center-flex
+    display: flex
+    justify-content: flex-start
+    align-items: center
+
+@mixin right-center-flex
+    display: flex
+    justify-content: flex-end
+    align-items: center
+
+@mixin center-left-flex
+    display: flex
+    justify-content: center
+    align-items: flex-start
+
+@mixin center-right-flex
+    display: flex
+    justify-content: center
+    align-items: flex-end
+
+@mixin sa-center-flex
+    display: flex
+    justify-content: space-around
+    align-items: center
+
+@mixin sa-left-flex
+    display: flex
+    justify-content: space-around
+    align-items: flex-start
+
+@mixin sa-right-flex
+    display: flex
+    justify-content: space-around
+    align-items: flex-end
+
+@mixin sb-center-flex
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+@mixin se-center-flex
+    display: flex
+    justify-content: space-evenly
+    align-items: center
+
+@mixin list-column
+    display: flex
+    flex-direction: column

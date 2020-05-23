@@ -1,0 +1,191 @@
+.__inner-screen
+    width: calc(100% - #{$hDpad})
+    height: calc(100% - #{$hDpad})
+    position: absolute
+    top: calc(#{$hDpad} / 2)
+    left: calc(#{$hDpad} / 2)
+    border-radius: calc(#{$borRad}em - #{$hDpad})
+
+    background-color: $dbg2
+    overflow: hidden
+
+    .__notif-area
+        $notchSize: 3em
+
+        width: 100%
+        height: $notchHeight
+        position: relative
+
+        @include center-flex
+
+        .__notch
+            width: $notchSize
+            height: $notchSize
+            background-color: $dbg
+
+            position: absolute
+            top: -2em
+            border-radius: calc(#{$notchSize} / 3)
+            transform: rotateZ(45deg)
+
+            padding: 0.4em
+
+            display: flex
+            justify-content: flex-end
+            align-items: flex-end
+
+            z-index: 2
+
+            .__camera
+                width: calc(#{$notchSize} / 5)
+                height: calc(#{$notchSize} / 5)
+                background-color: #1f1f1f
+                border-radius: 50%
+
+                @include center-flex
+
+                .__lens
+                    width: calc(100% / 1.5)
+                    height: calc(100% / 1.5)
+                    background-color: $dbg2
+                    border-radius: 50%
+
+                    position: relative
+                    box-shadow: inset 0 -0.1em 0.1em #000
+
+                    &:before, &:after
+                        content: ''
+
+                        border-radius: 50%
+
+                        position: absolute
+
+                    &:before
+                        width: calc(100% / 3.5)
+                        height: calc(100% / 3.5)
+                        background-color: rgba(220,220,220,0.25)
+
+                        top: 10%
+                        right: 40%
+                    &:after
+                        width: calc(100% / 5)
+                        height: calc(100% / 5)
+                        background-color: rgba(220,220,220,0.1)
+                        
+                        bottom: 10%
+                        right: 38%
+
+
+        .__notif-bar
+            width: 100%
+            height: 100%
+            background-color: $dbg
+            position: relative
+
+            @include sb-center-flex
+            z-index: 1
+
+            .__just-to-cover-something
+                width: 1em
+                height: 100%
+                background-color: $dbg2
+                position: relative
+
+                &:before, &:after
+                    content: ''
+
+                    width: $hDpad
+                    height: $hDpad
+
+                    background-color: $dbg2
+                    position: absolute
+                    bottom: 0
+                
+                &:before
+                    left: -50%
+                &:after
+                    right: -50%
+
+            .__left,
+            .__right
+                width: calc(100% / 2 - 0.75em)
+                height: inherit
+
+                padding: 0 calc(#{$dpad} / 1.5)
+                background-color: $dbg2
+                
+            .__left
+                border-radius: 0 25% 0 0 / 0 100% 0 0
+                @include left-center-flex
+
+                &> div
+                    margin-right: $hDpad
+
+                .__time
+                    height: 100%
+                    span
+                        font-size: 0.7em
+
+                .__wifi
+                    height: calc(100% - #{$hDpad})
+                    display: flex
+
+                    svg
+                        width: auto
+                        height: 100%
+
+                        path, circle
+                            fill: #fff
+            .__right
+                border-radius: 25% 0 0 0 / 100% 0 0 0
+                @include right-center-flex
+                
+                &> div
+                    margin-left: calc(#{$hDpad} / 3)
+
+                .__battery, .__alarm
+                    height: 100%
+                    display: flex
+
+                    svg
+                        width: auto
+                        height: 100%
+                .__battery
+                    svg
+                        transform: rotateZ(90deg) scale(1.2)
+
+                .__alarm
+                    height: calc(100% - #{$hDpad})
+
+    .__nav-bar
+        width: 100%
+        height: $navBarheight
+
+        background-color: $dbg4
+        position: relative
+
+        @include sa-center-flex
+
+        &> div
+            opacity: 0.5
+            width: $navBarheight
+            height: $navBarheight
+
+            border-radius: 50%
+            @include center-flex
+
+        .__square
+            width: 0.68em
+            height: 0.68em
+            border: 0.05em solid #fff
+            border-radius: 0.1em
+
+        .__circle
+            width: 0.8em
+            height: 0.8em
+            border: 0.05em solid #fff
+            border-radius: 50%
+
+        svg
+            width: auto
+            height: calc(100% - (#{$dpad} * 1.2))

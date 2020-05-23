@@ -1,0 +1,242 @@
+$keyButtonSize: 3em
+@mixin operator
+    width: 1.2em
+    height: 0.2em
+    background-color: $dcolor
+    border-radius: 0.5em
+    
+.calculator
+    width: 100%
+    height: calc(100% - (#{$notchHeight} + #{$navBarheight}))
+
+    .__view
+        width: 100%
+        height: calc(100% / 3 - #{$dpad})
+        padding: calc(#{$hDpad} / 2) calc(#{$hDpad} / 2 + #{$hDpad})
+
+        display: flex
+        justify-content: flex-end
+        align-items: flex-end
+        flex-wrap: wrap
+
+        span
+            width: 100%
+            text-align: right
+            font-size: 2em
+
+            &.__equation
+                margin-top: 0.8em
+
+                &.__has-result
+                    font-size: 1.25em
+                    opacity: 0.5
+                
+            &.__result
+                
+
+    .__keypads
+        width: 100%
+        height: calc(100% * 2 / 3 + #{$dpad})
+        background-color: $dbg4
+
+        .__slider
+            width: 100%
+            height: 0.8em
+
+            @include center-flex
+            flex-direction: column
+
+            &:before, &:after
+                content: ''
+
+                width: 1.5em
+                height: 1px
+                background-color: $dbg2
+                box-shadow: 0 0.1em rgba(255,255,255,0.1)
+    
+            &:after
+                margin-top: calc(#{$hDpad} / 3)
+
+        .__key-wrapper
+            padding: $hDpad calc(#{$hDpad} * 2.25)
+            @include sb-center-flex
+            flex-wrap: wrap
+
+            &.pointer-grp
+                &> div
+                    cursor: pointer
+
+            &> div
+                &:active
+                    background-color: #888
+
+            &> div, .__add, .__subtract
+                width: $keyButtonSize
+                height: $keyButtonSize
+                border-radius: 50%
+                margin-bottom: calc(#{$keyButtonSize} / 4)
+
+                background-color: $dbg5
+                position: relative
+
+                @include center-flex
+
+            .__zero
+                width: calc(#{$keyButtonSize} * 2 + (#{$keyButtonSize} / 4))
+                margin-right: 0.2em
+                border-radius: calc(#{$keyButtonSize} * 2 / 3)
+
+            .__decimal
+                &:before
+                    content: ''
+
+                    width: calc(100% / 7)
+                    height: calc(100% / 7)
+
+                    border-radius: 50%
+                    background-color: #fff
+                    position: absolute
+
+            .__equals
+                background-color: $dcolor
+                flex-direction: column
+
+                &:before, &:after
+                    content: ''
+                    @include operator
+                    background-color: #fff
+
+                &:after
+                    margin-top: calc(#{$hDpad} / 2)
+
+            .__add
+                flex-direction: column
+
+                &:before, &:after
+                    content: ''
+                    @include operator
+                
+                &:after
+                    position: absolute
+                    transform: rotateZ(90deg)
+
+            .__subtract
+                &:before
+                    content: ''
+                    @include operator
+
+            .__multiply
+                &.__add
+                    transform: rotateZ(45deg)
+
+            .__divide
+                flex-direction: column
+
+                &> div
+                    @include operator
+
+                &:before, &:after
+                    content: ''
+                    @include operator
+
+                    width: 0.25em
+                    height: 0.25em
+
+                &:before
+                    margin-bottom: 0.2em
+                &:after
+                    margin-top: 0.2em
+
+            .__modulo
+                $modPos: 0.3em
+                &> div
+                    position: relative
+                    transform: rotateZ(-45deg)
+                    @include operator
+                    height: 0.08em
+                    background-color: #fff
+
+                    &:before, &:after
+                        content: ''
+                        @include operator
+
+                        width: 0.35em
+                        height: 0.35em
+
+                        position: absolute
+                        background-color: transparent
+                        border: 0.08em solid #fff
+                        border-radius: 50%
+
+                    &:before
+                        top: $modPos
+                        left: $modPos
+                    &:after
+                        bottom: $modPos
+                        left: $modPos
+
+            .__negPos
+                $objLoc: -0.5em
+
+                &:before
+                    content: ''
+                    @include operator
+                    background-color: #fff
+
+                    width: 1.5em
+                    height: 0.1em
+                    transform: rotateZ(-45deg)
+
+                &> div
+                    transform: scale(0.6)
+                    position: absolute
+
+                .__add
+                    background-color: transparent
+                    top: $objLoc
+                    left: -0.4em
+                    &:before, &:after
+                        background-color: #fff
+
+                .__subtract
+                    background-color: transparent
+                    bottom: -1.3em
+                    right: -0.3em
+                    &:before, &:after
+                        background-color: #fff
+                        
+            .__back-button
+                &.__add
+                    &:before, &:after
+                        background-color: #fff
+                    &:before
+                        transform: scale(0.4) rotateZ(-45deg)
+                    &:after
+                        transform: scale(0.4) rotateZ(45deg)
+
+                &> div
+                    width: 0.9em
+                    height: 1em
+
+                    position: absolute
+                    margin-left: 0.1em
+
+                    border-radius: 0.1em
+                    border: 0.1em solid #fff
+                    border-left: 0.1em solid transparent
+
+                    &:before
+                        content: ''
+
+                        width: 63%
+                        height: 58%
+
+                        position: absolute
+                        top: 0
+                        left: 0
+                        border: 0.1em solid #fff
+                        transform: rotateZ(45deg) translate(-31%, 42%) skew(8deg, 8deg)
+
+                        border-radius: 0.1em
+                        border-top: 0.1em solid transparent
+                        border-right: 0.1em solid transparent
