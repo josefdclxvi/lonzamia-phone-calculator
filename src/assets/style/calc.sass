@@ -12,7 +12,7 @@ $keyButtonSize: 3em
     .__view
         width: 100%
         height: calc(100% / 3 - #{$dpad})
-        padding: calc(#{$hDpad} / 2) calc(#{$hDpad} / 2 + #{$hDpad})
+        padding: calc(#{$hDpad} / 2) calc(#{$hDpad} / 2 + (#{$hDpad} / 2))
 
         display: flex
         justify-content: flex-end
@@ -22,13 +22,13 @@ $keyButtonSize: 3em
         span
             width: 100%
             text-align: right
-            font-size: 2em
+            font-size: 3em
 
             &.__equation
                 margin-top: 0.8em
 
                 &.__has-result
-                    font-size: 1.25em
+                    font-size: 1.25em !important
                     opacity: 0.5
                 
             &.__result

@@ -3,7 +3,8 @@ import React from 'react'
 import Keypad from './Keypad'
 import View from './View'
 
-import { getSymbol } from '../../utils/operators'
+import { operator, getSymbol } from '../../utils/operators'
+import { isInfinity } from '../../utils/condition'
 
 class Calc extends React.Component {
     constructor(){
@@ -12,12 +13,14 @@ class Calc extends React.Component {
             display: '',
             equation: '',
             result: '',
+            charLength: 0,
+
             isNeg: false,
             haveResult: false,
         }
     }
 
-    onKemerot = e => {
+    handleKeyPick = e => {
         let equation = this.state.equation
         let display = this.state.display
         const triggeredKey = e.currentTarget.id
@@ -29,15 +32,20 @@ class Calc extends React.Component {
         const clearFilter = !isNaN(parseInt(key)) ? key : ''
 
         if (key === 'clear' || this.state.haveResult) {
-            return this.clear(clearFilter)
+            return this.reset(clearFilter)
         } else if ((key >= 0 && key <= 9) || key === getSymbol('decimal').code) {
-            let eq = equation.match(/\d/g)
-            let aos = eq !== null ? eq.join('') : ''
-            if (aos.length === 10) return;
+            // let eq = equation.match(/\d/g)
+            // let aos = eq !== null ? eq.join('') : ''
+
+            this.setState({charLength: equation.length})
+            if (equation.length > 24) return;
             
             equation += key
             display += key
-        } else if (['modulo','add', 'subtract', 'multiply', 'divide'].indexOf(key) !== -1) {
+        } else if (operator.indexOf(key) !== -1) {
+            this.setState({charLength: equation.length})
+            if (equation.length > 24) return;
+
             equation += ' ' + getSymbol(key).code + ' '
             display += ' ' + getSymbol(key).symbol + ' '
         } else if (key === 'equals') {
@@ -45,12 +53,12 @@ class Calc extends React.Component {
                 // eslint-disable-next-line
                 const equaRes = eval(equation)
                 const result = Number.isInteger(equaRes) ? equaRes : equaRes.toFixed(2)
-                const resFilter = result === 'Infinity' || result === 'undefined'
+                const res = isNaN(parseFloat(result)) ? 'Invalid' : result
 
-                const results = resFilter ? `wtf?` : `= ${result}`
-                this.props.crackIt(resFilter)
+                this.props.crackIt(isInfinity(result))
+                this.props.shakeIt(isInfinity(result))
                 
-                this.setState({result: results,haveResult: true})
+                this.setState({result: res,haveResult: true})
             } catch (error) {
                 this.setState({result: 'Invalid',haveResult: true,})
                 this.props.shakeIt(true)
@@ -69,7 +77,7 @@ class Calc extends React.Component {
         })
     }
 
-    clear = tKey => {
+    reset = tKey => {
         this.props.shakeIt(false)
         this.setState({
             display: tKey,
@@ -84,7 +92,7 @@ class Calc extends React.Component {
         return (
             <div className='calculator'>
                 <View {...this.state}/>
-                <Keypad onKemerot={this.onKemerot} />
+                <Keypad handleKeyPick={this.handleKeyPick} />
             </div>
         )
     }

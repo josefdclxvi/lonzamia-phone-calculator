@@ -1,10 +1,12 @@
+export const operator = ['modulo','add', 'subtract', 'multiply', 'divide']
+
 const s = [
-    {name: 'add', code: '+', symbol: '+'},
-    {name: 'subtract', code: '-', symbol: '−'},
-    {name: 'multiply', code: '*', symbol: '×'},
-    {name: 'divide', code: '/', symbol: '÷'},
+    {name: operator[0], code: '%', symbol: '%'},
+    {name: operator[1], code: '+', symbol: '+'},
+    {name: operator[2], code: '-', symbol: '−'},
+    {name: operator[3], code: '*', symbol: '×'},
+    {name: operator[4], code: '/', symbol: '÷'},
     {name: 'decimal', code: '.', symbol: '.'},
-    {name: 'modulo', code: '%', symbol: '%'},
 ]
 
 export const getSymbol = v => {

@@ -4,7 +4,7 @@ import Notch from './Notch'
 import Calc from '../calculator/Calculator'
 import Backbutton from '../svgRaw/BackButton'
 
-import {isTouch} from '../../utils/touchDetect'
+import {isTouch} from '../../utils/condition'
 
 class Phone extends React.Component {
     state = {
