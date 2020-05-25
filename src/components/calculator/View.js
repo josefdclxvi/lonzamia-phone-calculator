@@ -16,9 +16,9 @@ const View = props => {
     
     // props.shakeIt(!isNaN(parseFloat(result)))
 
-    const results = numLength(result) > 17 ? `= ${parseFloat(result).toExponential(2)}` : `= ${result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
+    const res = numLength(result) > 17 ? `= ${parseFloat(result).toExponential(2)}` : `= ${result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
 
-    // const results = isInfinity(result) ? `wtf?` : res
+    const results = isInfinity(result) ? `wtf?` : res
 
     return (
         <>
@@ -33,12 +33,6 @@ const View = props => {
                         className={`__result`}
                         style={{fontSize: `${getFontSize(results.length - 3)}em`}}
                     >{results}</span>
-                }
-            </div>
-            <div className=''>
-                {
-                    charLength > 24 &&
-                    <span>Maximum character reached</span>
                 }
             </div>
         </>

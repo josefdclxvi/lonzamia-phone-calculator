@@ -7,7 +7,14 @@ $keyButtonSize: 3em
     
 .calculator
     width: 100%
-    height: calc(100% - (#{$notchHeight} + #{$navBarheight}))
+    // height: calc(100% - (#{$notchHeight} + #{$navBarheight}))
+    height: calc(100% - #{$notchHeight})
+
+    @include center-flex
+    flex-direction: column
+
+    .__view, .__keypads
+        position: absolute
 
     .__view
         width: 100%
@@ -18,6 +25,8 @@ $keyButtonSize: 3em
         justify-content: flex-end
         align-items: flex-end
         flex-wrap: wrap
+
+        top: 0
 
         span
             width: 100%
@@ -36,8 +45,11 @@ $keyButtonSize: 3em
 
     .__keypads
         width: 100%
+        // height: calc(100% * 2 / 3 + (#{$dpad} * 3))
         height: calc(100% * 2 / 3 + #{$dpad})
         background-color: $dbg4
+        
+        bottom: 0
 
         .__slider
             width: 100%

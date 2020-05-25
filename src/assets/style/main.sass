@@ -2,6 +2,7 @@
 @import './fx.sass'
 @import './phone.sass'
 @import './calc.sass'
+@import './homescreen.sass'
 
 main
     width: 100%
@@ -27,14 +28,17 @@ main
 .pointer
     cursor: pointer
 
-.__crack
+.modal-wrapper, .__crack
     width: 100%
     height: 100%
-
     position: absolute
-    @include backgroundImage('/img/crack.png','0% -17%','contain')
+
+    z-index: 20
 
     @include center-flex
+    
+.__crack
+    @include backgroundImage('/img/crack.png','0% -17%','contain')
 
     z-index: 20
     transition: unset !important
@@ -48,23 +52,26 @@ main
         position: absolute
         @include backgroundImage('/img/cracked.png','0% 55%','contain')
 
-        z-index: 1
+        z-index: 5000
 
-    .__modal
-        width: calc(100% / 1.25)
-        height: auto
+.__modal
+    width: calc(100% / 1.25)
+    height: auto
+
+    background: rgba(0,0,0,0.5)
+    position: absolute
+    @include center-flex
+
+    z-index: 3000
+    animation: fadeIn 1 1s
+
+    &.__toast
+        animation: fadeOut 1 1s
+
+    span
+        font-size: 1.3em
+        text-align: center
         padding: 5%
-
-        background: rgba(0,0,0,0.5)
-        position: absolute
-        @include center-flex
-
-        z-index: 0
-        animation: fadeIn 1 1s 
-
-        span
-            font-size: 1.3em
-            text-align: center
 
 .__shake
     animation: shake 10 0.1s

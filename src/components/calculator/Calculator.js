@@ -38,12 +38,14 @@ class Calc extends React.Component {
             // let aos = eq !== null ? eq.join('') : ''
 
             this.setState({charLength: equation.length})
+            this.props.charLength(equation.length > 24)
             if (equation.length > 24) return;
             
             equation += key
             display += key
         } else if (operator.indexOf(key) !== -1) {
             this.setState({charLength: equation.length})
+            this.props.charLength(equation.length > 24)
             if (equation.length > 24) return;
 
             equation += ' ' + getSymbol(key).code + ' '
@@ -51,6 +53,7 @@ class Calc extends React.Component {
         } else if (key === 'equals') {
             try {
                 // eslint-disable-next-line
+                // eval is dangerous, please dont try this at your home
                 const equaRes = eval(equation)
                 const result = Number.isInteger(equaRes) ? equaRes : equaRes.toFixed(2)
                 const res = isNaN(parseFloat(result)) ? 'Invalid' : result
