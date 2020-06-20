@@ -52,8 +52,8 @@ class Calc extends React.Component {
             display += ' ' + getSymbol(key).symbol + ' '
         } else if (key === 'equals') {
             try {
-                // eslint-disable-next-line
                 // eval is dangerous, please dont try this at your home
+                // eslint-disable-next-line
                 const equaRes = eval(equation)
                 const result = Number.isInteger(equaRes) ? equaRes : equaRes.toFixed(2)
                 const res = isNaN(parseFloat(result)) ? 'Invalid' : result
